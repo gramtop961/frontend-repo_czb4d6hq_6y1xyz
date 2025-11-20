@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const fieldClass = "w-full px-3 py-2 rounded-lg bg-slate-800/60 border border-slate-700 focus:border-blue-500 outline-none text-white placeholder-slate-400"
 const labelClass = "text-sm text-slate-300 mb-1 block"
 
@@ -29,6 +27,10 @@ export default function ResumeForm({ data, setData }) {
           <label className={labelClass}>Location</label>
           <input value={data.location} onChange={e=>update('location', e.target.value)} className={fieldClass} placeholder="San Francisco, CA"/>
         </div>
+        <div>
+          <label className={labelClass}>Photo URL (optional)</label>
+          <input value={data.photo||''} onChange={e=>update('photo', e.target.value)} className={fieldClass} placeholder="https://.../avatar.jpg"/>
+        </div>
       </div>
 
       <div className="space-y-4">
@@ -46,6 +48,11 @@ export default function ResumeForm({ data, setData }) {
       <div className="md:col-span-2 grid md:grid-cols-2 gap-6">
         <ListField label="Experience" value={data.experience} onChange={v=>update('experience', v)} itemTemplate={{role:'', company:'', period:'', details:''}}/>
         <ListField label="Education" value={data.education} onChange={v=>update('education', v)} itemTemplate={{degree:'', school:'', period:'', details:''}}/>
+      </div>
+
+      <div className="md:col-span-2 grid md:grid-cols-2 gap-6">
+        <ListField label="Projects" value={data.projects} onChange={v=>update('projects', v)} itemTemplate={{name:'', link:'', period:'', details:''}}/>
+        <ListField label="Certifications" value={data.certifications} onChange={v=>update('certifications', v)} itemTemplate={{name:'', issuer:'', year:''}}/>
       </div>
     </div>
   )
